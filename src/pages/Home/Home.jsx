@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import Header from "../../components/Shared/Header/Header";
 import Banner from "../../components/Banner/Banner";
 import { TiCoffee } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -12,7 +12,6 @@ const Home = () => {
                 <title>Home | Coffee Store</title>
             </Helmet>
 
-            <Header></Header>
             <Banner></Banner>
 
             {/* Products Section */}
@@ -21,10 +20,12 @@ const Home = () => {
                     <p className="text-[#1B1A1A] font-medium"><small>--- Sip & Savor ---</small></p>
                     <h3 className="text-[#331A15] text-3xl md:text-5xl font-semibold">Our Popular Products</h3>
 
-                    <button
-                    className="bg-[#E3B577] btn hover:bg-[#e2a14c] text-xl font-medium text-white mt-4 px-4 py-2 rounded-lg border-2 border-[#331A15] hover:border-[#331A15]">
-                        Add Coffee <span className="text-2xl text-[#331A15] mt-1"><TiCoffee /></span>
-                    </button>
+                    <Link to="/addCoffee">
+                        <button
+                            className="bg-[#E3B577] btn hover:bg-[#e2a14c] text-xl font-medium text-white mt-4 px-4 py-2 rounded-lg border-2 border-[#331A15] hover:border-[#331A15]">
+                            Add Coffee <span className="text-2xl text-[#331A15] mt-1"><TiCoffee /></span>
+                        </button>
+                    </Link>
 
                 </div>
 
@@ -36,7 +37,7 @@ const Home = () => {
                     <p className="text-[#1B1A1A] font-medium"><small>--- Follow Us Now ---</small></p>
                     <h3 className="text-[#331A15] text-3xl md:text-5xl font-semibold">Follow on Instagram</h3>
                 </div>
-                
+
                 <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
                     <img src="https://i.ibb.co/NFprq7z/1.png" alt="Instagram post photo" />
                     <img src="https://i.ibb.co/bJxKtQ7/2.png" alt="Instagram post photo" />
