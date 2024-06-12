@@ -1,9 +1,49 @@
+import Swal from 'sweetalert2'
 import { Helmet } from "react-helmet-async";
 import { FaArrowLeft } from "react-icons/fa";
-import { TiCoffee } from "react-icons/ti";
 import { Link } from "react-router-dom";
 
 const AddCoffee = () => {
+
+    const handleAddCoffee = event => {
+        event.preventDefault();
+
+        const form = event.target;
+
+        const name = form.name.value;
+        const chef = form.chef.value;
+        const supplier = form.supplier.value;
+        const taste = form.taste.value;
+        const category = form.category.value;
+        const details = form.details.value;
+        const photoURL = form.photoURL.value;
+
+        const newCoffee = { name, chef, supplier, taste, category, details, photoURL };
+        console.log(newCoffee);
+
+        fetch('http://localhost:5000/coffee', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newCoffee),
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Congratulation!',
+                        text: 'Coffee Added Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Next'
+                    })
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 
     return (
 
@@ -32,66 +72,65 @@ const AddCoffee = () => {
                         </p>
                     </div>
 
-                    <form
-                        className="grid grid-cols-1 md:grid-cols-2 justify-between items-center my-6">
+                    <form onSubmit={handleAddCoffee}
+                        className="grid grid-cols-1 md:grid-cols-2 justify-between items-center mt-6">
 
                         <div className="form-control w-11/12 mx-auto">
                             <label className="label">
                                 <span className="label-text text-lg text-[#1B1A1ACC] font-semibold">Name</span>
                             </label>
-                            <input type="text" placeholder="Enter Coffee Name" className="input input-bordered text-[#1B1A1ACC]" required />
+                            <input type="text" name="name" placeholder="Enter Coffee Name" className="input input-bordered text-[#1B1A1ACC]" required />
                         </div>
 
                         <div className="form-control w-11/12 mx-auto">
                             <label className="label">
                                 <span className="label-text text-lg text-[#1B1A1ACC] font-semibold">Chef</span>
                             </label>
-                            <input type="text" placeholder="Enter Coffee Chef" className="input input-bordered text-[#1B1A1ACC]" required />
+                            <input type="text" name="chef" placeholder="Enter Coffee Chef" className="input input-bordered text-[#1B1A1ACC]" required />
                         </div>
 
                         <div className="form-control w-11/12 mx-auto">
                             <label className="label">
                                 <span className="label-text text-lg text-[#1B1A1ACC] font-semibold">Supplier</span>
                             </label>
-                            <input type="text" placeholder="Enter Coffee Supplier" className="input input-bordered text-[#1B1A1ACC]" required />
+                            <input type="text" name="supplier" placeholder="Enter Coffee Supplier" className="input input-bordered text-[#1B1A1ACC]" required />
                         </div>
 
                         <div className="form-control w-11/12 mx-auto">
                             <label className="label">
                                 <span className="label-text text-lg text-[#1B1A1ACC] font-semibold">Taste</span>
                             </label>
-                            <input type="text" placeholder="Enter Coffee Taste" className="input input-bordered text-[#1B1A1ACC]" required />
+                            <input type="text" name="taste" placeholder="Enter Coffee Taste" className="input input-bordered text-[#1B1A1ACC]" required />
                         </div>
 
                         <div className="form-control w-11/12 mx-auto">
                             <label className="label">
                                 <span className="label-text text-lg text-[#1B1A1ACC] font-semibold">Category</span>
                             </label>
-                            <input type="text" placeholder="Enter Coffee Category" className="input input-bordered text-[#1B1A1ACC]" required />
+                            <input type="text" name="category" placeholder="Enter Coffee Category" className="input input-bordered text-[#1B1A1ACC]" required />
                         </div>
 
                         <div className="form-control w-11/12 mx-auto">
                             <label className="label">
                                 <span className="label-text text-lg text-[#1B1A1ACC] font-semibold">Details</span>
                             </label>
-                            <input type="text" placeholder="Enter Coffee Details" className="input input-bordered text-[#1B1A1ACC]" required />
+                            <input type="text" name="details" placeholder="Enter Coffee Details" className="input input-bordered text-[#1B1A1ACC]" required />
                         </div>
 
                         <div className="form-control mx-5 col-span-2">
                             <label className="label">
                                 <span className="label-text text-lg text-[#1B1A1ACC] font-semibold">Photo</span>
                             </label>
-                            <input type="text" placeholder="Enter Photo URL" className="input input-bordered text-[#1B1A1ACC]" required />
+                            <input type="url" name="photoURL" placeholder="Enter Photo URL" className="input input-bordered text-[#1B1A1ACC]" required />
+                        </div>
+
+                        <div className="mx-5 mt-8 col-span-2">
+                            <input
+                                className="w-full bg-[#D2B48C] hover:bg-[#E3B577] text-xl font-medium text-[#331A15] px-4 py-2 rounded-lg border-2 border-[#331A15] hover:border-[#331A15]" type="submit"
+                                value="Add Coffee" />
                         </div>
 
                     </form>
-
-                    <div className="mx-5">
-                        <button
-                            className="w-full bg-[#D2B48C] hover:bg-[#E3B577] text-xl font-medium text-[#331A15] px-4 py-2 rounded-lg border-2 border-[#331A15] hover:border-[#331A15]">
-                            Add Coffee
-                        </button>
-                    </div>
 
                 </div>
 
