@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Outlet } from "react-router-dom";
+import Footer from "../../components/Shared/Footer/Footer";
 
 const Root = () => {
 
@@ -11,6 +12,7 @@ const Root = () => {
             </Helmet>
             
             <Outlet></Outlet>
+            <Footer></Footer>
         
         </div>
     );
