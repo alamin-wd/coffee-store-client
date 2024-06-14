@@ -19,7 +19,6 @@ const AddCoffee = () => {
         const photoURL = form.photoURL.value;
 
         const newCoffee = { name, chef, supplier, taste, category, details, photoURL };
-        console.log(newCoffee);
 
         fetch('http://localhost:5000/coffee', {
             method: 'POST',
@@ -30,7 +29,7 @@ const AddCoffee = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'Congratulation!',
@@ -39,6 +38,7 @@ const AddCoffee = () => {
                         confirmButtonText: 'Next'
                     })
                 }
+             
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -66,7 +66,7 @@ const AddCoffee = () => {
                 <div className="bg-[#F4F3F0] p-10 mb-10">
 
                     <div className="w-4/5 mx-auto text-center">
-                        <h3 className="text-[#374151] text-2xl font-semibold">Add New Coffee</h3>
+                        <h3 className="text-[#374151] text-4xl font-semibold">Add New Coffee</h3>
                         <p className="text-[#1B1A1AB3] font-medium mt-2">
                             It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution <br /> of letters, as opposed to using Content here.
                         </p>

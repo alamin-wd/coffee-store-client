@@ -1,9 +1,14 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "../../components/Banner/Banner";
 import { TiCoffee } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import CoffeeCard from "../../components/CoffeeCard/CoffeeCard";
+
+
 
 const Home = () => {
+
+    const coffees = useLoaderData();
 
     return (
 
@@ -22,11 +27,20 @@ const Home = () => {
 
                     <Link to="/addCoffee">
                         <button
-                            className="bg-[#E3B577] btn hover:bg-[#e2a14c] text-xl font-medium text-white mt-4 px-4 py-2 rounded-lg border-2 border-[#331A15] hover:border-[#331A15]">
+                            className="bg-[#E3B577] btn hover:bg-[#e2a14c] text-xl font-medium text-white my-6 px-4 py-2 rounded-lg border-2 border-[#331A15] hover:border-[#331A15]">
                             Add Coffee <span className="text-2xl text-[#331A15] mt-1"><TiCoffee /></span>
                         </button>
                     </Link>
 
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4 mt-6">
+                    {
+                        coffees.map(coffee => <CoffeeCard
+                            key={coffee._id}
+                            coffee={coffee}
+                        ></CoffeeCard>)
+                    }
                 </div>
 
             </div>

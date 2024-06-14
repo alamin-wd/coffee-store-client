@@ -5,28 +5,28 @@ import AddCoffee from "../pages/AddCoffee/AddCoffee";
 import UpdateCoffee from "../pages/UpdateCoffee/UpdateCoffee";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root></Root>,
-      children: [
-        {
-            path: "/",
-            element: <Home></Home>,
-        },
+  {
+    path: "/",
+    element: <Root></Root>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch('http://localhost:5000/coffee'),
+      },
 
-        {
-            path: "addCoffee",
-            element: <AddCoffee></AddCoffee>,
-        },
+      {
+        path: "addCoffee",
+        element: <AddCoffee></AddCoffee>,
+      },
 
-        {
-            path: "updateCoffee",
-            element: <UpdateCoffee></UpdateCoffee>,
-        }
-      ]
-    },
-  ]);
+      {
+        path: "updateCoffee",
+        element: <UpdateCoffee></UpdateCoffee>,
+      }
+    ]
+  },
+]);
 
-  export default router;
+export default router;
 
-  
