@@ -16,9 +16,10 @@ const AddCoffee = () => {
         const taste = form.taste.value;
         const category = form.category.value;
         const details = form.details.value;
+        const price = form.price.value;
         const photoURL = form.photoURL.value;
 
-        const newCoffee = { name, chef, supplier, taste, category, details, photoURL };
+        const newCoffee = { name, chef, supplier, taste, category, details, price, photoURL };
 
         fetch('http://localhost:5000/coffee', {
             method: 'POST',
@@ -117,7 +118,14 @@ const AddCoffee = () => {
                             <input type="text" name="details" placeholder="Enter Coffee Details" className="input input-bordered text-[#1B1A1ACC]" required />
                         </div>
 
-                        <div className="form-control mx-5 col-span-2">
+                        <div className="form-control w-11/12 mx-auto">
+                            <label className="label">
+                                <span className="label-text text-lg text-[#1B1A1ACC] font-semibold">Price</span>
+                            </label>
+                            <input type="number" name="price" placeholder="Enter Coffee Price" className="input input-bordered text-[#1B1A1ACC]" required />
+                        </div>
+
+                        <div className="form-control w-11/12 mx-auto">
                             <label className="label">
                                 <span className="label-text text-lg text-[#1B1A1ACC] font-semibold">Photo</span>
                             </label>

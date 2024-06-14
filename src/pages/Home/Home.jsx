@@ -3,12 +3,13 @@ import Banner from "../../components/Banner/Banner";
 import { TiCoffee } from "react-icons/ti";
 import { Link, useLoaderData } from "react-router-dom";
 import CoffeeCard from "../../components/CoffeeCard/CoffeeCard";
-
+import { useState } from "react";
 
 
 const Home = () => {
 
-    const coffees = useLoaderData();
+    const loadedCoffees = useLoaderData();
+    const [coffees, setCoffees] = useState(loadedCoffees);
 
     return (
 
@@ -39,6 +40,8 @@ const Home = () => {
                         coffees.map(coffee => <CoffeeCard
                             key={coffee._id}
                             coffee={coffee}
+                            coffees={coffees}
+                            setCoffees={setCoffees}
                         ></CoffeeCard>)
                     }
                 </div>
